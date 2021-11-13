@@ -5,18 +5,36 @@
     color: hotpink;
 }
 
-.userinfo{
-    /*display: block;*/
-    text-align: center;
-    /*justify-content: center;*/
+.graph{
+    display: flex;
+    justify-content: center;
 }
 
+.userinfo{
+    /*display: block;*/
+    height: 400px;
+    width: 50%;
+    /*display: flex;*/
+    float: left;
+    text-align: center;
+    /*display: flow;*/
+    /*justify-content: center;*/
+}
+.Pies{
+    width: 50%;
+    height: 400px;
+    float: left;
+    text-align: center;
+}
 .userinfo-text{
-    font-size: 50px;
+    height: 400px;
+    width: 50%;
+    font-size: 30px;
     padding: 10px 16px;
     margin: 20px 0;
     border-bottom: 1px solid #fafafa;
     /*align-items: center;*/
+    float: left;
     text-align: center;
 }
 

@@ -27,7 +27,7 @@ class ProblemList extends React.Component {
         console.log(value)
         console.log()
         // search by id
-        // search by tytle
+        // search by title
         // search by difficulty
         for (let j = 0; j < this.state.allproblems.length; j++) {
             if ((id && this.state.allproblems[j].program_id === id) ||
