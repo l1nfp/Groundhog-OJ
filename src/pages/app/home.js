@@ -1,5 +1,5 @@
 import React from "react";
-import {Layout, Menu, Breadcrumb, Avatar, Modal,  Upload} from 'antd';
+import {Layout, Menu, Breadcrumb, Avatar, Modal} from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,

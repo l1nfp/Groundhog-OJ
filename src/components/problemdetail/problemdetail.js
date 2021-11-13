@@ -12,9 +12,13 @@ import axios from "axios";
 import * as querystring from "querystring";
 import {HOST_URL} from "../../utils/utils";
 import {connect} from "react-redux";
-
-const ReactMarkdown = require('react-markdown')
-const markdown = `A paragraph with *emphasis* and **strong importance**.
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+const markdown = `
+# Head1
+## Head2
+### Head3
+A paragraph with *emphasis* and **strong importance**.
 
 > A block quote with ~strikethrough~ and a URL: https://reactjs.org.
 
@@ -139,7 +143,7 @@ class ProblemDetail extends React.Component {
                         <strong>BackTop</strong>
                     </BackTop>
                 </div>
-                <ReactMarkdown children={markdown} />,
+                <ReactMarkdown children={markdown} remarkPlugins={[remarkGfm]} />
             </div>
 
 

@@ -7,7 +7,6 @@ import publicRoutes from "./routes/public";
 import normalRoutes from "./routes/normal";
 import AuthRoute from "./components/authroute/authroute";
 import {PersistGate} from 'redux-persist/lib/integration/react';
-import ParticlesBg from "particles-bg";
 ReactDOM.render(
     <div>
         <Provider store={store}>
@@ -29,7 +28,6 @@ ReactDOM.render(
                 </Router>
             </PersistGate>
         </Provider>
-        <ParticlesBg type="circle" bg={true}/>
     </div>
 
     , document.getElementById('root'));
