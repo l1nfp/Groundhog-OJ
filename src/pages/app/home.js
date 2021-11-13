@@ -137,7 +137,7 @@ class HomePage extends React.Component {
 
                             </div>
                         </Content>
-                        <Footer style={{textAlign: 'center'}}>SE Course©2018 Created by Gruop3</Footer>
+                        <Footer>Created by Gruop3</Footer>
                     </Layout>
                 </Layout>
             </div>

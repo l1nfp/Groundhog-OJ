@@ -21,10 +21,10 @@
     background: #fff;
 }
 
-.Footer{
+Footer{
     font-family: "Quicksand";
     font-size: 40px;
     color: pink;
     text-align: center;
-    /*align-items: center;*/
+    align-items: center;
 }
