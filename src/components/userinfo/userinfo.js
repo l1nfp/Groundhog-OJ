@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import ParticlesBg from "particles-bg";
 import Userinfochart from "./Problemsolvestatus";
 
+
 const UserInfo = () => {
     const userinfo = useSelector(state => state.userinfo)
 
@@ -18,6 +19,7 @@ const UserInfo = () => {
                         src="https://joeschmoe.io/api/v1/random"
                         style={{
                             width: 100,
+                            alignItems:"center",
                         }}
                     />
                 }

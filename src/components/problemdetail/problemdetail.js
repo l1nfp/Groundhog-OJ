@@ -4,7 +4,7 @@ import {
     Popconfirm,
     Button,
     Affix,
-    BackTop
+    BackTop, Spin
 } from 'antd';
 import React, {useState} from 'react';
 import TextArea from "antd/es/input/TextArea";
@@ -37,6 +37,7 @@ class ProblemDetail extends React.Component {
         super(props);
         this.setState({})
         this.state = {
+            loading:false,
             id: '',
             name: '',
             content: '',
@@ -71,14 +72,15 @@ class ProblemDetail extends React.Component {
     }
 
     confirm = e => {
-        console.log(this.state.answer)
-        console.log(this.props.userinfo.id)
+        this.setState({
+            loading:true
+        })
         axios.post(
-            HOST_URL + '/api/programs/' + this.state.id,
+            HOST_URL + '/api/programsDocker/' + this.state.id,
             {
                 program_id: this.state.id,
                 user_id: this.props.userinfo.id,
-                answer: this.state.answer
+                answerCode: this.state.answer
             },
             {
                 headers: {
@@ -87,18 +89,29 @@ class ProblemDetail extends React.Component {
                 }
             },
         ).then(res => {
+            this.setState({
+                loading:false
+            })
             // console.log(Res.data.status)
             if (res.data.err === 'ok') {
                 if (res.data.status === 'pass') {
                     message.success('答案正确');
-                    this.props.history.push('/home/problems')
+                   // this.props.history.push('/home/problems')
                 }else{
-                    message.warning('答案错误');
+                    console.log(res.data)
+                    if (res.data.status === 'wrong answer') {
+                        message.warning('答案错误');
+                    }else{
+                        message.warning('编译错误\n'+res.data.data);
+                    }
                 }
             } else {
                 message.error('提交失败');
             }
         }).catch(err => {
+            this.setState({
+                loading:false
+            })
             message.error('网络请求失败');
             console.log(err)
         })
@@ -106,7 +119,7 @@ class ProblemDetail extends React.Component {
 
     render() {
         return (
-            <div>
+            <Spin spinning={this.state.loading} delay={500}>
                 <div>
                     {/*题目信息*/}
                     <Descriptions
@@ -118,8 +131,7 @@ class ProblemDetail extends React.Component {
                         <Descriptions.Item label="题目名称">{this.state.name}</Descriptions.Item>
                         <Descriptions.Item label="题目难度">{this.state.difficulty}</Descriptions.Item>
                         <Descriptions.Item label="题目内容">
-                            {this.state.content}
-                            <br/>
+                            <ReactMarkdown children={this.state.content} remarkPlugins={[remarkGfm]} />
                         </Descriptions.Item>
                     </Descriptions>
 
@@ -143,9 +155,7 @@ class ProblemDetail extends React.Component {
                         <strong>BackTop</strong>
                     </BackTop>
                 </div>
-                <ReactMarkdown children={markdown} remarkPlugins={[remarkGfm]} />
-            </div>
-
+            </Spin>
 
 
         );
